@@ -1,11 +1,13 @@
-package org.bibliarij.assignment2gis;
+package org.bibliarij.assignment2gis.entities;
 
 import lombok.Data;
 
+/**
+ * "City" entity
+ */
 @Data
-public class City {
+public class City extends Entity {
 
-    private Long id;
     private String name;
     private Double area;
     private Integer population;

@@ -1,14 +1,16 @@
-package org.bibliarij.assignment2gis;
+package org.bibliarij.assignment2gis.entities;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * "Organization" entity
+ */
 @Data
-public class Organization {
+public class Organization extends Entity {
 
-    private Long id;
     private String name;
     private City city;
     private Street street;
