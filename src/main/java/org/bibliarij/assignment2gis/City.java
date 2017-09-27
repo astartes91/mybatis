@@ -5,5 +5,8 @@ import lombok.Data;
 @Data
 public class City {
 
-    public Long id;
+    private Long id;
+    private String name;
+    private Double area;
+    private Integer population;
 }
