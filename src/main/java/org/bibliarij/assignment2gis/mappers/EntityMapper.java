@@ -1,6 +1,5 @@
 package org.bibliarij.assignment2gis.mappers;
 
-import org.apache.ibatis.annotations.Param;
 import org.bibliarij.assignment2gis.entities.Entity;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public interface EntityMapper<T extends Entity> {
      * @param id
      * @return
      */
-    T getEntity(@Param("id") Long id);
+    T getEntity(Long id);
 
     /**
      * Insert entity

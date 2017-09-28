@@ -25,6 +25,6 @@
 
     <!-- Update entity -->
     <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.City">
-        UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id}
+        UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id};
     </update>
 </mapper>

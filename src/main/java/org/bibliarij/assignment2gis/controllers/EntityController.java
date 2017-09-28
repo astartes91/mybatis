@@ -49,6 +49,20 @@ public abstract class EntityController<T extends Entity> {
     }
 
     /**
+     * REST endpoint for entities' batch creation
+     * @return
+     * @param entities
+     */
+    @ApiOperation("Entities' batch creation")
+    @RequestMapping(method = RequestMethod.POST, value = "/list")
+    public List<T> create(@RequestBody List<T> entities){
+        entities.forEach(
+                entity -> getMapper().insertEntity(entity)
+        );
+        return entities;
+    }
+
+    /**
      * REST endpoint for entity update
      * @return
      * @param entity
@@ -61,7 +75,8 @@ public abstract class EntityController<T extends Entity> {
                 id != null
                         && entity.getId() != null
                         && id.equals(entity.getId())
-                        && getMapper().getEntity(id) != null, "Id is not correct!"
+                        && getMapper().getEntity(id) != null,
+                "Id is not correct!"
         );
 
         getMapper().updateEntity(entity);
