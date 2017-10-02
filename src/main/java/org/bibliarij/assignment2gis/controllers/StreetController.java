@@ -2,8 +2,7 @@ package org.bibliarij.assignment2gis.controllers;
 
 import io.swagger.annotations.Api;
 import org.bibliarij.assignment2gis.entities.Street;
-import org.bibliarij.assignment2gis.mappers.EntityMapper;
-import org.bibliarij.assignment2gis.mappers.StreetMapper;
+import org.bibliarij.assignment2gis.services.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class StreetController extends EntityController<Street> {
 
     @Autowired
-    private StreetMapper streetMapper;
+    private EntityService<Street> service;
 
+    /**
+     * Get instance of mapper
+     * @return
+     */
     @Override
-    public EntityMapper<Street> getMapper() {
-        return streetMapper;
+    public EntityService<Street> getService() {
+        return service;
     }
 }

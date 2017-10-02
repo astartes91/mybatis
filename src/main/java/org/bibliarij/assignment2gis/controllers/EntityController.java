@@ -3,7 +3,7 @@ package org.bibliarij.assignment2gis.controllers;
 import com.google.common.base.Preconditions;
 import io.swagger.annotations.ApiOperation;
 import org.bibliarij.assignment2gis.entities.Entity;
-import org.bibliarij.assignment2gis.mappers.EntityMapper;
+import org.bibliarij.assignment2gis.services.EntityService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Spring REST controller for generic entity
+ * @param <T>
  */
 public abstract class EntityController<T extends Entity> {
 
@@ -23,7 +24,7 @@ public abstract class EntityController<T extends Entity> {
     @ApiOperation("Get all entities")
     @RequestMapping(method = RequestMethod.GET)
     public List<T> getAllEntities(){
-        return getMapper().getAllEntities();
+        return getService().getAllEntities();
     }
 
     /**
@@ -33,7 +34,7 @@ public abstract class EntityController<T extends Entity> {
     @ApiOperation("Get entity by id")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public T get(@PathVariable Long id){
-        return getMapper().getEntity(id);
+        return getService().getEntity(id);
     }
 
     /**
@@ -44,7 +45,7 @@ public abstract class EntityController<T extends Entity> {
     @ApiOperation("Entity creation")
     @RequestMapping(method = RequestMethod.POST)
     public T create(@RequestBody T entity){
-        getMapper().insertEntity(entity);
+        getService().insertEntity(entity);
         return entity;
     }
 
@@ -57,7 +58,7 @@ public abstract class EntityController<T extends Entity> {
     @RequestMapping(method = RequestMethod.POST, value = "/list")
     public List<T> create(@RequestBody List<T> entities){
         entities.forEach(
-                entity -> getMapper().insertEntity(entity)
+                entity -> getService().insertEntity(entity)
         );
         return entities;
     }
@@ -75,17 +76,17 @@ public abstract class EntityController<T extends Entity> {
                 id != null
                         && entity.getId() != null
                         && id.equals(entity.getId())
-                        && getMapper().getEntity(id) != null,
+                        && getService().getEntity(id) != null,
                 "Id is not correct!"
         );
 
-        getMapper().updateEntity(entity);
+        getService().updateEntity(entity);
         return entity;
     }
 
     /**
-     * Get instance of mapper
+     * Get instance of service
      * @return
      */
-    public abstract EntityMapper<T> getMapper();
+    protected abstract EntityService<T> getService();
 }

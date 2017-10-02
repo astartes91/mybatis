@@ -17,6 +17,6 @@ public class Organization extends Entity {
     private String houseNumber;
     private String activityField;
     private List<String> phoneNumbers;
-    private String webSiteUrl;
+    private String websiteUrl;
     private LocalDateTime creationUpdateDateTime;
 }

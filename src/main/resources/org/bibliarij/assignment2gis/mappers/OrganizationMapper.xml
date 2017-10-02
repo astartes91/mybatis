@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- MyBatis mapper for Organization entity -->
+<mapper namespace="org.bibliarij.assignment2gis.mappers.OrganizationMapper">
+
+    <!-- Get all entities -->
+    <select id="getAllEntities" resultType="org.bibliarij.assignment2gis.entities.Organization">
+        SELECT * FROM public.organization;
+    </select>
+
+    <!-- Get entity by id -->
+    <select id="getEntity" resultType="org.bibliarij.assignment2gis.entities.Organization">
+        SELECT * FROM public.organization org WHERE org.id = #{id};
+    </select>
+
+    <!-- Insert entity -->
+    <insert
+            id="insertEntity"
+            parameterType="org.bibliarij.assignment2gis.entities.Organization"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id"
+    >
+        INSERT INTO public.organization(
+            name, city_id, street_id, house_number, activity_field, website_url, creation_update_date_time
+        )
+        VALUES (
+            #{name},
+            #{city.id},
+            #{street.id},
+            #{houseNumber},
+            #{activityField},
+            #{websiteUrl},
+            #{creationUpdateDateTime}
+        );
+    </insert>
+
+    <!-- Update entity -->
+    <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.City">
+        UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id};
+    </update>
+</mapper>
