@@ -19,7 +19,7 @@ public class OrganizationController extends EntityController<Organization> {
     private EntityService<Organization> service;
 
     /**
-     * Get instance of mapper
+     * Get instance of service
      * @return
      */
     @Override

@@ -36,6 +36,11 @@
         );
     </insert>
 
+    <!-- Insert phone for organization -->
+    <insert id="insertPhone" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO public.phone(phone, organization_id) VALUES (#{phone}, #{organizationId});
+    </insert>
+
     <!-- Update entity -->
     <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.City">
         UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id};

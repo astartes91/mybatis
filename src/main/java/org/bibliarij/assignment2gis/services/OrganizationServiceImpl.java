@@ -6,6 +6,9 @@ import org.bibliarij.assignment2gis.mappers.OrganizationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for {@link Organization} entity
+ */
 @Service
 public class OrganizationServiceImpl extends EntityServiceImpl<Organization> {
 

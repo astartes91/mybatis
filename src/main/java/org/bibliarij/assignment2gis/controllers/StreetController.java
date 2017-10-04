@@ -19,7 +19,7 @@ public class StreetController extends EntityController<Street> {
     private EntityService<Street> service;
 
     /**
-     * Get instance of mapper
+     * Get instance of service
      * @return
      */
     @Override

@@ -6,6 +6,9 @@ import org.bibliarij.assignment2gis.mappers.StreetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for {@link Street} entity
+ */
 @Service
 public class StreetServiceImpl extends EntityServiceImpl<Street> {
 
