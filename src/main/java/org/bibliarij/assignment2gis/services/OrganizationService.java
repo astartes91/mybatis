@@ -2,6 +2,7 @@ package org.bibliarij.assignment2gis.services;
 
 import org.bibliarij.assignment2gis.entities.Organization;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,4 +18,11 @@ public interface OrganizationService extends EntityService<Organization> {
      * @return
      */
     List<Organization> get(String name);
+
+    /**
+     * Get organizations by creation/update date-time
+     * @param creationUpdateDateTime
+     * @return
+     */
+    List<Organization> get(LocalDateTime creationUpdateDateTime);
 }

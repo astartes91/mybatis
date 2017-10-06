@@ -19,6 +19,11 @@
         SELECT * FROM public.organization org WHERE org.name = #{name};
     </select>
 
+    <!-- Get organizations by creation/update date-time -->
+    <select id="getByCreationUpdateDateTime" resultType="org.bibliarij.assignment2gis.entities.Organization">
+        SELECT * FROM public.organization org WHERE org.creation_update_date_time >= #{creationUpdateDateTime};
+    </select>
+
     <!-- Insert entity -->
     <insert
             id="insert"

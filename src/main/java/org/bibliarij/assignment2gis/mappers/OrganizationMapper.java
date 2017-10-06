@@ -1,8 +1,10 @@
 package org.bibliarij.assignment2gis.mappers;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.bibliarij.assignment2gis.entities.Organization;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -19,11 +21,18 @@ public interface OrganizationMapper extends EntityMapper<Organization> {
     List<Organization> getByName(String name);
 
     /**
+     * Get organizations by creation/update date-time
+     * @param creationUpdateDateTime
+     * @return
+     */
+    List<Organization> getByCreationUpdateDateTime(LocalDateTime creationUpdateDateTime);
+
+    /**
      * Insert phone for organization
      * @param phone
      * @param organizationId
      */
-    void insertPhone(String phone, Long organizationId);
+    void insertPhone(@Param("phone") String phone, @Param("organizationId") Long organizationId);
 
     /**
      * Delete phone from organization

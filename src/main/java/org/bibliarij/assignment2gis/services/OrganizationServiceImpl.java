@@ -6,6 +6,7 @@ import org.bibliarij.assignment2gis.mappers.OrganizationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +27,8 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
      */
     @Override
     public void insertEntity(Organization entity) {
+
+        entity.setCreationUpdateDateTime(LocalDateTime.now());
         super.insertEntity(entity);
 
         entity.getPhoneNumbers().forEach(phone -> mapper.insertPhone(phone, entity.getId()));
@@ -39,6 +42,7 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
     @Override
     public void updateEntity(Organization entity) {
 
+        entity.setCreationUpdateDateTime(LocalDateTime.now());
         super.updateEntity(entity);
 
         Organization oldOrganization = get(entity.getId());
@@ -63,6 +67,17 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
     @Override
     public List<Organization> get(String name) {
         return mapper.getByName(name);
+    }
+
+    /**
+     * Get organizations by creation/update date-time
+     *
+     * @param creationUpdateDateTime
+     * @return
+     */
+    @Override
+    public List<Organization> get(LocalDateTime creationUpdateDateTime) {
+        return mapper.getByCreationUpdateDateTime(creationUpdateDateTime);
     }
 
     /**

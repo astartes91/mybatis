@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -33,6 +34,17 @@ public class OrganizationController extends EntityController<Organization> {
     @RequestMapping(method = RequestMethod.GET, value = "/by-name/{name}")
     public List<Organization> get(@PathVariable String name){
         return service.get(name);
+    }
+
+    /**
+     * REST endpoint for getting organizations by creation/update date-time
+     * @param creationUpdateDateTime
+     * @return
+     */
+    @ApiOperation("Get organizations by creation/update date-time")
+    @RequestMapping(method = RequestMethod.GET, value = "/by-creation-update-date-time/{creationUpdateDateTime}")
+    public List<Organization> get(@PathVariable LocalDateTime creationUpdateDateTime){
+        return service.get(creationUpdateDateTime);
     }
 
     /**
