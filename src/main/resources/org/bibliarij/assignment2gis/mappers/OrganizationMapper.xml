@@ -10,13 +10,18 @@
     </select>
 
     <!-- Get entity by id -->
-    <select id="getEntity" resultType="org.bibliarij.assignment2gis.entities.Organization">
+    <select id="get" resultType="org.bibliarij.assignment2gis.entities.Organization">
         SELECT * FROM public.organization org WHERE org.id = #{id};
+    </select>
+
+    <!-- Get organizations by name -->
+    <select id="getByName" resultType="org.bibliarij.assignment2gis.entities.Organization">
+        SELECT * FROM public.organization org WHERE org.name = #{name};
     </select>
 
     <!-- Insert entity -->
     <insert
-            id="insertEntity"
+            id="insert"
             parameterType="org.bibliarij.assignment2gis.entities.Organization"
             useGeneratedKeys="true"
             keyProperty="id"
@@ -42,7 +47,7 @@
     </insert>
 
     <!-- Update entity -->
-    <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.Organization">
+    <update id="update" parameterType="org.bibliarij.assignment2gis.entities.Organization">
         UPDATE public.organization
         SET
             name = #{name},
@@ -55,6 +60,7 @@
         WHERE id = #{id};
     </update>
 
+    <!-- Delete phone from organization -->
     <delete id="deletePhone">
         DELETE FROM public.phone phone WHERE phone.phone = #{phone} AND phone.organization_id = #{organizationId};
     </delete>

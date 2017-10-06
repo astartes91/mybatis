@@ -29,12 +29,13 @@ public abstract class EntityController<T extends Entity> {
 
     /**
      * REST endpoint for getting entity by id
+     * @param id
      * @return
      */
     @ApiOperation("Get entity by id")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public T get(@PathVariable Long id){
-        return getService().getEntity(id);
+        return getService().get(id);
     }
 
     /**
@@ -76,7 +77,7 @@ public abstract class EntityController<T extends Entity> {
                 id != null
                         && entity.getId() != null
                         && id.equals(entity.getId())
-                        && getService().getEntity(id) != null,
+                        && getService().get(id) != null,
                 "Id is not correct!"
         );
 

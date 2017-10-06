@@ -28,8 +28,8 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
      * @return
      */
     @Override
-    public T getEntity(Long id) {
-        return getMapper().getEntity(id);
+    public T get(Long id) {
+        return getMapper().get(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
      */
     @Override
     public void insertEntity(T entity) {
-        getMapper().insertEntity(entity);
+        getMapper().insert(entity);
     }
 
     /**
@@ -49,7 +49,7 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
      */
     @Override
     public void updateEntity(T entity) {
-        getMapper().updateEntity(entity);
+        getMapper().update(entity);
     }
 
     /**

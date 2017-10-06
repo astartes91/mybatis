@@ -21,18 +21,18 @@ public interface EntityMapper<T extends Entity> {
      * @param id
      * @return
      */
-    T getEntity(Long id);
+    T get(Long id);
 
     /**
      * Insert entity
      * @param city
      * @return
      */
-    void insertEntity(T city);
+    void insert(T city);
 
     /**
      * Update entity
      * @param entity
      */
-    void updateEntity(T entity);
+    void update(T entity);
 }

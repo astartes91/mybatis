@@ -10,13 +10,13 @@
     </select>
 
     <!-- Get entity by id -->
-    <select id="getEntity" resultType="org.bibliarij.assignment2gis.entities.Street">
+    <select id="get" resultType="org.bibliarij.assignment2gis.entities.Street">
         SELECT * FROM public.street street WHERE street.id = #{id};
     </select>
 
     <!-- Insert entity -->
     <insert
-            id="insertEntity"
+            id="insert"
             parameterType="org.bibliarij.assignment2gis.entities.Street"
             useGeneratedKeys="true"
             keyProperty="id"
@@ -26,7 +26,7 @@
     </insert>
 
     <!-- Update entity -->
-    <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.Street">
+    <update id="update" parameterType="org.bibliarij.assignment2gis.entities.Street">
         UPDATE public.street SET name = #{name}, length = #{length} WHERE id = #{id};
     </update>
 </mapper>

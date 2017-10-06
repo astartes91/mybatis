@@ -21,7 +21,7 @@ public interface EntityService<T extends Entity>  {
      * @param id
      * @return
      */
-    T getEntity(Long id);
+    T get(Long id);
 
     /**
      * Insert entity

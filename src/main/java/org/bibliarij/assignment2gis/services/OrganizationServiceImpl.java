@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Service for {@link Organization} entity
  */
 @Service
-public class OrganizationServiceImpl extends EntityServiceImpl<Organization> {
+public class OrganizationServiceImpl extends EntityServiceImpl<Organization> implements OrganizationService {
 
     @Autowired
     private OrganizationMapper mapper;
@@ -40,7 +41,7 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> {
 
         super.updateEntity(entity);
 
-        Organization oldOrganization = getEntity(entity.getId());
+        Organization oldOrganization = get(entity.getId());
         Set<String> oldPhoneNumbers = oldOrganization.getPhoneNumbers();
 
         Set<String> newPhones = entity.getPhoneNumbers();
@@ -51,6 +52,17 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> {
         Set<String> deletedPhones = new HashSet<>(oldPhoneNumbers);
         deletedPhones.removeAll(newPhones);
         deletedPhones.forEach(phone -> mapper.deletePhone(phone, entity.getId()));
+    }
+
+    /**
+     * Get organizations by name
+     *
+     * @param name
+     * @return
+     */
+    @Override
+    public List<Organization> get(String name) {
+        return mapper.getByName(name);
     }
 
     /**
