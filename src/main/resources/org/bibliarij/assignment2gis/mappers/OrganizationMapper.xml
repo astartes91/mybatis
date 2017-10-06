@@ -42,7 +42,20 @@
     </insert>
 
     <!-- Update entity -->
-    <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.City">
-        UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id};
+    <update id="updateEntity" parameterType="org.bibliarij.assignment2gis.entities.Organization">
+        UPDATE public.organization
+        SET
+            name = #{name},
+            city_id = #{city.id},
+            street_id = #{street.id},
+            house_number = #{houseNumber},
+            activity_field = #{activityField},
+            website_url = #{websiteUrl},
+            creation_update_date_time = #{creationUpdateDateTime}
+        WHERE id = #{id};
     </update>
+
+    <delete id="deletePhone">
+        DELETE FROM public.phone phone WHERE phone.phone = #{phone} AND phone.organization_id = #{organizationId};
+    </delete>
 </mapper>

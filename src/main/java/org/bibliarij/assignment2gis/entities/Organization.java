@@ -3,7 +3,7 @@ package org.bibliarij.assignment2gis.entities;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 /**
  * "Organization" entity
@@ -16,7 +16,7 @@ public class Organization extends Entity {
     private Street street;
     private String houseNumber;
     private String activityField;
-    private List<String> phoneNumbers;
+    private Set<String> phoneNumbers;
     private String websiteUrl;
     private LocalDateTime creationUpdateDateTime;
 }

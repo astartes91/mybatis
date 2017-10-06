@@ -15,4 +15,6 @@ public interface OrganizationMapper extends EntityMapper<Organization> {
      * @param organizationId
      */
     void insertPhone(String phone, Long organizationId);
+
+    void deletePhone(String phone, Long organizationId);
 }
