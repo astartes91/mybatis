@@ -39,5 +39,5 @@ public interface OrganizationMapper extends EntityMapper<Organization> {
      * @param phone
      * @param organizationId
      */
-    void deletePhone(String phone, Long organizationId);
+    void deletePhone(@Param("phone") String phone, @Param("organizationId") Long organizationId);
 }

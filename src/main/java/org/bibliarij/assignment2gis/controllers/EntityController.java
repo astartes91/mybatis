@@ -46,7 +46,7 @@ public abstract class EntityController<T extends Entity> {
     @ApiOperation("Entity creation")
     @RequestMapping(method = RequestMethod.POST)
     public T create(@RequestBody T entity){
-        getService().insertEntity(entity);
+        getService().create(entity);
         return entity;
     }
 
@@ -59,7 +59,7 @@ public abstract class EntityController<T extends Entity> {
     @RequestMapping(method = RequestMethod.POST, value = "/list")
     public List<T> create(@RequestBody List<T> entities){
         entities.forEach(
-                entity -> getService().insertEntity(entity)
+                entity -> getService().create(entity)
         );
         return entities;
     }
@@ -81,7 +81,7 @@ public abstract class EntityController<T extends Entity> {
                 "Id is not correct!"
         );
 
-        getService().updateEntity(entity);
+        getService().update(entity);
         return entity;
     }
 

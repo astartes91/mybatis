@@ -6,7 +6,7 @@
 
     <!-- Get all entities -->
     <select id="getAllEntities" resultType="org.bibliarij.assignment2gis.entities.City">
-        SELECT * FROM public.city;
+        SELECT * FROM public.city city ORDER BY city.id;
     </select>
 
     <!-- Get entity by id -->

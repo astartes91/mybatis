@@ -6,6 +6,7 @@ import org.bibliarij.assignment2gis.entities.Organization;
 import org.bibliarij.assignment2gis.services.EntityService;
 import org.bibliarij.assignment2gis.services.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,9 @@ public class OrganizationController extends EntityController<Organization> {
      */
     @ApiOperation("Get organizations by creation/update date-time")
     @RequestMapping(method = RequestMethod.GET, value = "/by-creation-update-date-time/{creationUpdateDateTime}")
-    public List<Organization> get(@PathVariable LocalDateTime creationUpdateDateTime){
+    public List<Organization> get(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime creationUpdateDateTime
+    ){
         return service.get(creationUpdateDateTime);
     }
 

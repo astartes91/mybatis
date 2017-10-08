@@ -26,10 +26,10 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
      * @param entity
      */
     @Override
-    public void insertEntity(Organization entity) {
+    public void create(Organization entity) {
 
         entity.setCreationUpdateDateTime(LocalDateTime.now());
-        super.insertEntity(entity);
+        super.create(entity);
 
         entity.getPhoneNumbers().forEach(phone -> mapper.insertPhone(phone, entity.getId()));
     }
@@ -40,10 +40,10 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
      * @param entity
      */
     @Override
-    public void updateEntity(Organization entity) {
+    public void update(Organization entity) {
 
         entity.setCreationUpdateDateTime(LocalDateTime.now());
-        super.updateEntity(entity);
+        super.update(entity);
 
         Organization oldOrganization = get(entity.getId());
         Set<String> oldPhoneNumbers = oldOrganization.getPhoneNumbers();

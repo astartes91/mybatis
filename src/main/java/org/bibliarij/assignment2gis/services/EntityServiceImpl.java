@@ -38,7 +38,7 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
      * @param entity
      */
     @Override
-    public void insertEntity(T entity) {
+    public void create(T entity) {
         getMapper().insert(entity);
     }
 
@@ -48,7 +48,7 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
      * @param entity
      */
     @Override
-    public void updateEntity(T entity) {
+    public void update(T entity) {
         getMapper().update(entity);
     }
 

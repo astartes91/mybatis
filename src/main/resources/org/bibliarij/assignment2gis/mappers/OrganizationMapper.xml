@@ -4,24 +4,71 @@
 <!-- MyBatis mapper for Organization entity -->
 <mapper namespace="org.bibliarij.assignment2gis.mappers.OrganizationMapper">
 
+    <resultMap id="organizationResultMap" type="org.bibliarij.assignment2gis.entities.Organization" autoMapping="true">
+
+        <id column="id" property="id"/>
+
+        <association
+                property="city"
+                autoMapping="true"
+                javaType="org.bibliarij.assignment2gis.entities.City"
+                columnPrefix="city_"
+        />
+
+        <association
+                property="street"
+                autoMapping="true"
+                javaType="org.bibliarij.assignment2gis.entities.Street"
+                columnPrefix="street_"
+        />
+
+        <collection property="phoneNumbers" ofType="java.lang.String" javaType="java.util.Set">
+            <result column="phone"/>
+        </collection>
+
+    </resultMap>
+
+    <sql id="organizationSelect">
+        SELECT
+            org.*,
+            city.id AS city_id,
+            city.name AS city_name,
+            city.area AS city_area,
+            city.population AS city_population,
+            street.id AS street_id,
+            street.name AS street_name,
+            street.length AS street_length,
+            phone.phone
+        FROM public.organization org
+        LEFT JOIN public.city city ON org.city_id = city.id
+        LEFT JOIN public.street street on org.street_id = street.id
+        LEFT JOIN public.phone phone ON phone.organization_id = org.id
+    </sql>
+
     <!-- Get all entities -->
-    <select id="getAllEntities" resultType="org.bibliarij.assignment2gis.entities.Organization">
-        SELECT * FROM public.organization;
+    <select id="getAllEntities" resultMap="organizationResultMap">
+        <include refid="organizationSelect"/>
+        ORDER BY org.id;
     </select>
 
     <!-- Get entity by id -->
-    <select id="get" resultType="org.bibliarij.assignment2gis.entities.Organization">
-        SELECT * FROM public.organization org WHERE org.id = #{id};
+    <select id="get" resultMap="organizationResultMap">
+        <include refid="organizationSelect"/>
+        WHERE org.id = #{id};
     </select>
 
     <!-- Get organizations by name -->
-    <select id="getByName" resultType="org.bibliarij.assignment2gis.entities.Organization">
-        SELECT * FROM public.organization org WHERE org.name = #{name};
+    <select id="getByName" resultMap="organizationResultMap">
+        <include refid="organizationSelect"/>
+        WHERE org.name = #{name}
+        ORDER BY org.id;
     </select>
 
     <!-- Get organizations by creation/update date-time -->
-    <select id="getByCreationUpdateDateTime" resultType="org.bibliarij.assignment2gis.entities.Organization">
-        SELECT * FROM public.organization org WHERE org.creation_update_date_time >= #{creationUpdateDateTime};
+    <select id="getByCreationUpdateDateTime" resultMap="organizationResultMap">
+        <include refid="organizationSelect"/>
+        WHERE org.creation_update_date_time >= #{creationUpdateDateTime}
+        ORDER BY org.id;
     </select>
 
     <!-- Insert entity -->

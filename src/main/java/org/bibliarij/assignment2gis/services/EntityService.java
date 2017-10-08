@@ -27,11 +27,11 @@ public interface EntityService<T extends Entity>  {
      * Insert entity
      * @param entity
      */
-    void insertEntity(T entity);
+    void create(T entity);
 
     /**
      * Update entity
      * @param entity
      */
-    void updateEntity(T entity);
+    void update(T entity);
 }
