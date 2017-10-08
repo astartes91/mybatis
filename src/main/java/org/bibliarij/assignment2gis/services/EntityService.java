@@ -30,6 +30,12 @@ public interface EntityService<T extends Entity>  {
     void create(T entity);
 
     /**
+     * Insert entities
+     * @param entities
+     */
+    void create(List<T> entities);
+
+    /**
      * Update entity
      * @param entity
      */

@@ -25,10 +25,10 @@ public interface EntityMapper<T extends Entity> {
 
     /**
      * Insert entity
-     * @param city
+     * @param entity
      * @return
      */
-    void insert(T city);
+    void insert(T entity);
 
     /**
      * Update entity

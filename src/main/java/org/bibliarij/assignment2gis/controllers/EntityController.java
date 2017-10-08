@@ -58,9 +58,7 @@ public abstract class EntityController<T extends Entity> {
     @ApiOperation("Entities' batch creation")
     @RequestMapping(method = RequestMethod.POST, value = "/list")
     public List<T> create(@RequestBody List<T> entities){
-        entities.forEach(
-                entity -> getService().create(entity)
-        );
+        getService().create(entities);
         return entities;
     }
 

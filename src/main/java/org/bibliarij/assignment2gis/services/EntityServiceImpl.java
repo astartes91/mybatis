@@ -43,6 +43,16 @@ public abstract class EntityServiceImpl<T extends Entity> implements EntityServi
     }
 
     /**
+     * Insert entities
+     *
+     * @param entities
+     */
+    @Override
+    public void create(List<T> entities) {
+        entities.forEach(this::create);
+    }
+
+    /**
      * Update entity
      *
      * @param entity
