@@ -17,12 +17,17 @@ import java.util.Set;
 @Service
 public class OrganizationServiceImpl extends EntityServiceImpl<Organization> implements OrganizationService {
 
+    private final OrganizationMapper mapper;
+
     @Autowired
-    private OrganizationMapper mapper;
+    public OrganizationServiceImpl(OrganizationMapper mapper) {
+        this.mapper = mapper;
+    }
 
     /**
      * Insert entity
      *
+     * @should correctly create organization
      * @param entity
      */
     @Override
@@ -37,6 +42,7 @@ public class OrganizationServiceImpl extends EntityServiceImpl<Organization> imp
     /**
      * Update entity
      *
+     * @should correctly update organization
      * @param entity
      */
     @Override
