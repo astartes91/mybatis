@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- MyBatis mapper for City entity -->
+<mapper namespace="org.bibliarij.mybatis.mappers.CityMapper">
+
+    <!-- Get all entities -->
+    <select id="getAllEntities" resultType="org.bibliarij.mybatis.entities.City">
+        SELECT * FROM public.city city ORDER BY city.id;
+    </select>
+
+    <!-- Get entity by id -->
+    <select id="get" resultType="org.bibliarij.mybatis.entities.City">
+        SELECT * FROM public.city city WHERE city.id = #{id};
+    </select>
+
+    <!-- Insert entity -->
+    <insert
+            id="insert"
+            parameterType="org.bibliarij.mybatis.entities.City"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id"
+    >
+        INSERT INTO public.city(name, area, population) VALUES (#{name}, #{area}, #{population});
+    </insert>
+
+    <!-- Update entity -->
+    <update id="update" parameterType="org.bibliarij.mybatis.entities.City">
+        UPDATE public.city SET area = #{area}, name = #{name}, population = #{population} WHERE id = #{id};
+    </update>
+</mapper>
